@@ -47,12 +47,12 @@
             switch (teclaPresionada.Key)
             {
                 case ConsoleKey.RightArrow:
-                    if (posicionY < n)
+                    if (posicionY < n - 1)
                     {
                         int aux = juego[posicionX, posicionY];
                         juego[posicionX, posicionY] = 0;
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        juego[posicionX + 1, posicionY + 1] += aux;
+                        juego[posicionX, posicionY + 1] += aux;
+                        posicionY++;
                     }
                     break;
                 case ConsoleKey.LeftArrow:
@@ -60,27 +60,40 @@
                     {
                         int aux = juego[posicionX, posicionY];
                         juego[posicionX, posicionY] = 0;
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        juego[posicionX - 1, posicionY - 1] += aux;
+                        juego[posicionX, posicionY - 1] += aux;
+                        posicionY--;
                     }
                     break;
                 case ConsoleKey.UpArrow:
-                    if (posicionX < m)
+                    if (posicionX > 0)
                     {
                         int aux = juego[posicionX, posicionY];
                         juego[posicionX, posicionY] = 0;
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        juego[posicionX + 1, posicionY + 1] += aux;
+                        juego[posicionX - 1, posicionY] += aux;
+                        posicionX--;
                     }
                     break;
                 case ConsoleKey.DownArrow:
+                    if (posicionX < m - 1)
                     {
                         int aux = juego[posicionX, posicionY];
                         juego[posicionX, posicionY] = 0;
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        juego[posicionX - 1, posicionY - 1] += aux;
+                        juego[posicionX + 1, posicionY] += aux;
+                        posicionX++;
                     }
                     break;
+                case ConsoleKey.Escape:
+                    escPresionado = true;
+                    break;
+            }
+
+            for (int f = 0; f < m; f++)
+            {
+                for (int c = 0; c < n; c++)
+                {
+                    Console.Write(juego[f, c] + "\t");
+                }
+                Console.WriteLine();
             }
         }
     }
