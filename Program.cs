@@ -1,4 +1,6 @@
-﻿public class ParcialFinal
+﻿using System.Drawing;
+
+public class ParcialFinal
 {
     static void Main(string[] args)
     {
@@ -39,13 +41,16 @@
         {
             ConsoleKeyInfo teclaPresionada;
 
-            Console.WriteLine("Usa las teclas de dirección para mover el cero");
+            Console.WriteLine("Usa las teclas de dirección para sumar, al cero, el número en la dirección indicada");
             Console.WriteLine("Presiona la tecla Esc para salir");
 
             teclaPresionada = Console.ReadKey();
 
+            Console.Clear();
+
             switch (teclaPresionada.Key)
             {
+                
                 case ConsoleKey.RightArrow:
                     if (posicionY < n - 1)
                     {
@@ -91,10 +96,20 @@
             {
                 for (int c = 0; c < n; c++)
                 {
-                    Console.Write(juego[f, c] + "\t");
+                    if (f == posicionX && c == posicionY)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(juego[f, c] + "\t");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.Write(juego[f, c] + "\t");
+                    }
                 }
                 Console.WriteLine();
             }
+
         }
     }
     
