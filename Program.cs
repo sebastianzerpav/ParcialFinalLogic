@@ -4,11 +4,16 @@ public class ParcialFinal
 {
     static void Main(string[] args)
     {
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("¡Hola!");
-        Console.WriteLine("¿Cuántas filas tendrá la matriz?");
+        Console.WriteLine("¡Juguemos!");
+        Console.WriteLine("\nPrimero vamos a crear una matriz");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine("\n¿Cuántas filas quieres que tenga la matriz?");
         int m = int.Parse(Console.ReadLine());
-        Console.WriteLine("¿Cuántas columnas tendrá la matriz?");
+        Console.WriteLine("¿Cuántas columnas quieres que tenga la matriz?");
         int n = int.Parse(Console.ReadLine());
+        Console.Clear();
 
         int[,] juego = new int[m, n];
         int posicionX = 0, posicionY = 0;
@@ -24,13 +29,20 @@ public class ParcialFinal
         }
         juego[posicionX, posicionY] = 0;
 
-        Console.WriteLine();
-
         for (int f = 0; f < m; f++)
         {
             for (int c = 0; c < n; c++)
             {
-                Console.Write(juego[f, c] + "\t");
+                if (f == posicionX && c == posicionY)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(juego[f, c] + "\t");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.Write(juego[f, c] + "\t");
+                }
             }
             Console.WriteLine();
         }
@@ -40,9 +52,15 @@ public class ParcialFinal
         while(escPresionado == false)
         {
             ConsoleKeyInfo teclaPresionada;
-
-            Console.WriteLine("Usa las teclas de dirección para sumar, al cero, el número en la dirección indicada");
-            Console.WriteLine("Presiona la tecla Esc para salir");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\n¡DESCUBRE EL VALOR TOTAL DE LA SUMA DE TODOS LOS ELEMENTOS DE LA MATRIZ!");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("El color verde indica la posición donde te encuentras; si te mueves hacia alguna dirección," +
+                " sumarás al cero el número al que te dirijas.");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Usa las teclas de dirección.");
+            Console.WriteLine("En cualquier momento, presiona la tecla Esc si quieres finalizar el juego.");
+            Console.ResetColor();
 
             teclaPresionada = Console.ReadKey();
 
