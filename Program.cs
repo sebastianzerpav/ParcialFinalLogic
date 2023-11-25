@@ -20,7 +20,6 @@
                 juego[f, c] = num.Next(1, 10);
             }
         }
-
         juego[posicionX, posicionY] = 0;
 
         Console.WriteLine();
@@ -34,13 +33,55 @@
             Console.WriteLine();
         }
 
-
-        Console.WriteLine();
         bool escPresionado = false;
 
-        while(escPresionado)
+        while(escPresionado == false)
         {
+            ConsoleKeyInfo teclaPresionada;
 
+            Console.WriteLine("Usa las teclas de dirección para mover el cero");
+            Console.WriteLine("Presiona la tecla Esc para salir");
+
+            teclaPresionada = Console.ReadKey();
+
+            switch (teclaPresionada.Key)
+            {
+                case ConsoleKey.RightArrow:
+                    if (posicionY < n)
+                    {
+                        int aux = juego[posicionX, posicionY];
+                        juego[posicionX, posicionY] = 0;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        juego[posicionX + 1, posicionY + 1] += aux;
+                    }
+                    break;
+                case ConsoleKey.LeftArrow:
+                    if (posicionY > 0)
+                    {
+                        int aux = juego[posicionX, posicionY];
+                        juego[posicionX, posicionY] = 0;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        juego[posicionX - 1, posicionY - 1] += aux;
+                    }
+                    break;
+                case ConsoleKey.UpArrow:
+                    if (posicionX < m)
+                    {
+                        int aux = juego[posicionX, posicionY];
+                        juego[posicionX, posicionY] = 0;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        juego[posicionX + 1, posicionY + 1] += aux;
+                    }
+                    break;
+                case ConsoleKey.DownArrow:
+                    {
+                        int aux = juego[posicionX, posicionY];
+                        juego[posicionX, posicionY] = 0;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        juego[posicionX - 1, posicionY - 1] += aux;
+                    }
+                    break;
+            }
         }
     }
     
